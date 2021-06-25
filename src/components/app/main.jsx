@@ -93,15 +93,7 @@ const Main = () => {
                    render={({match}) => {
                        const {id} = match.params;
                        return <VideoDetails id={id}/>
-                   }}
-            />
-            {/* <Route exact path={'/profile'} render={() => <Profile/>}/>
-            <Route exact path="/edit/:id"
-                   render={({match}) => {
-                       const {id} = match.params;
-                       return <EditPage id={id}/>
-                   }}
-            /> */}
+                   }}/>
             </>
         </Switch>
     );
