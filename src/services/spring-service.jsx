@@ -2,13 +2,13 @@ import axios from 'axios';
 import moment from 'moment';
 
 const instance = axios.create({
-    // baseURL: 'http://springbootiqhub-env.eba-sbutpkbr.us-east-2.elasticbeanstalk.com/api'
-    baseURL:'http://localhost:5000/api'
+    baseURL: 'http://springbootiqhub-env.eba-sbutpkbr.us-east-2.elasticbeanstalk.com/api'
+    // baseURL:'http://localhost:5000/api'
   });
 
 const instSec = axios.create({
-    // baseURL: 'http://springbootiqhub-env.eba-sbutpkbr.us-east-2.elasticbeanstalk.com'
-    baseURL:'http://localhost:5000'
+    baseURL: 'http://springbootiqhub-env.eba-sbutpkbr.us-east-2.elasticbeanstalk.com'
+    // baseURL:'http://localhost:5000'
 });
 
 class CourseService {
