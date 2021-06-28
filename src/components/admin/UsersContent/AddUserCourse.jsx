@@ -18,9 +18,12 @@ const AddUserCourse = ({location}) => {
         console.log(location.state.usercourses+"DDDDDDDDDDDDdd")
         setLoading(true);
         
-        CourseService.getAllCourses()
+        CourseService.getCoursesNotInUser(location.state.id)
             .then(res=>{
-                setCourses(differenceBy(res.data, usercourses));
+                setCourses(res.data);
+                setLoading(false);
+            }).catch(error=>{
+                alert('Ошибка во время загрузки данных')
                 setLoading(false);
             });
     },[]);

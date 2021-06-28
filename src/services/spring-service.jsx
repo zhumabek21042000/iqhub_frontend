@@ -89,6 +89,9 @@ class CourseService {
     getRolesNotInUser(id){
         return instSec.get("/getRestRoles/"+id+"/"+localStorage.getItem("token"));
     }
+    getCoursesNotInUser(id){
+        return instSec.get("/getRestCourses/"+id+"/"+localStorage.getItem("token"));
+    }
     checkCourse(c_id){
         return instance.get("/userCourseCheck/"+localStorage.getItem("token")+"/"+c_id);
     }
