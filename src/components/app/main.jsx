@@ -21,6 +21,7 @@ import AddDoc from '../admin/AssignmentContent/AddAssignment';
 import Apps from '../admin/AssignmentContent/app';
 import UploadFiles from '../admin/AssignmentContent/UploadFiles';
 import AddUserCourse from '../admin/UsersContent/AddUserCourse';
+import Profile from '../pages/Profile';
 
 
 const Main = () => {
@@ -86,7 +87,7 @@ const Main = () => {
             <Route exact path="/course/:id"
                    render={({match}) => {
                        const {id} = match.params;
-                       return <CourseDetails id={id}/>
+                       return <CourseDetails id={id} access={isAdmin ? true : CourseService.checkCourse(id)}/>
                    }}
             />
             <Route exact path="/video/:id"
@@ -94,6 +95,7 @@ const Main = () => {
                        const {id} = match.params;
                        return <VideoDetails id={id}/>
                    }}/>
+            <Route exact path="/profile" component={Profile}/>
             </>
         </Switch>
     );

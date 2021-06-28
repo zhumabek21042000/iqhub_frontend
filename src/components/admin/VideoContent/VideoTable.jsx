@@ -9,13 +9,18 @@ const VideoTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [videosPerPage] = useState(5);
     const [search, setSearch] = useState('');
+    const [loading, setLoading] = useState(false);
     let history = useHistory();
 
     useEffect(() => {
+        setLoading(true)
         CourseService.getAllVideos()
             .then(res=>{
                 setVideos(res.data);
-                // setLoading(false);
+                setLoading(false);
+            }).catch(error=>{
+                alert('Ошибка во время получения данных видео')
+                setLoading(false);
             });
     },[]);
     const handleSearchChange = async(event)=>{
@@ -38,7 +43,10 @@ const VideoTable = () => {
             <form className="mt-3">
                 <input class="form-control w-25" type="text" onChange={handleSearchChange} placeholder="Поиск..." aria-label="Search"/>
             </form>
-            {videos.length >0?
+
+            {
+            !loading ? 
+            videos.length >0?
             <>
             <VideoData videolist={currentVideos}></VideoData>
             <Pagination
@@ -49,7 +57,10 @@ const VideoTable = () => {
             </>
             :
             <h3 className="mt-3 text-center">Никаких видео нет :(</h3>
+            :
+            CourseService.loadingGif()
             }
+
         </div>
     )
 }

@@ -54,7 +54,7 @@ const VideoDetails = (props)=>{
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="0">
   
-        <h5>Описание о видео: {video.description}</h5>
+        <h5>Описание видео: {video.description}</h5>
       
       </Accordion.Toggle>
       {/* <Accordion.Collapse eventKey="1"> */}
@@ -64,6 +64,7 @@ const VideoDetails = (props)=>{
         </Card.Body>
       {/* </Accordion.Collapse> */}
       <div className="row">
+      <button className="btn btn-secondary ml-5" style={{width:"100px", height:"40px", marginLeft:"5px"}} onClick={()=>history.goBack()}>Назад</button>
       {isAdmin && <>
       <button className="btn btn-danger ml-5" onClick={e =>
         window.confirm("Вы уверены что хотите удалить это видео?") &&
@@ -71,7 +72,7 @@ const VideoDetails = (props)=>{
     } style={{width:"100px", height:"40px", marginLeft:"5px"}}>Удалить</button>
       <button className="btn btn-success ml-5" style={{width:"100px", height:"40px", marginLeft:"5px"}} onClick={()=>history.push("/adminactions/editvideo/"+video.id)}>Изменить</button>
       </>}
-      <button className="btn btn-secondary ml-5" style={{width:"100px", height:"40px", marginLeft:"5px"}} onClick={()=>history.goBack()}>Назад</button>
+      
       </div>
     </Card>
    

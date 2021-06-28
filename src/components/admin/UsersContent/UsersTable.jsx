@@ -14,10 +14,11 @@ const UsersTable = () => {
     let history = useHistory();
 
     useEffect(() => {
+        setLoading(true);
         CourseService.getAllUsers()
             .then(res=>{
                 setUsers(res.data);
-                // setLoading(false);
+                setLoading(false);
             });
     },[]);
     const handleSearchChange = async(event)=>{
@@ -41,12 +42,22 @@ const UsersTable = () => {
             <form className="mt-3">
                 <input class="form-control w-25" type="text" onChange={handleSearchChange} placeholder="Поиск..." aria-label="Search"/>
             </form>
+            {
+            !loading ? 
+            users.length >0?
+            <>
             <UsersData userlist={currentUsers.reverse()}></UsersData>
             <Pagination
                 itemsPerPage={usersPerPage}
                 totalItems={users.length}
                 paginate={paginate}
             />
+            </>
+            :
+            <h3 className="mt-3 text-center">Никаких пользователей нет :(</h3>
+            :
+            CourseService.loadingGif()
+            }
         </div>
     )
 }

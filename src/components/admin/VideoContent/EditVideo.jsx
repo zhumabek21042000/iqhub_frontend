@@ -23,6 +23,7 @@ const EditVideo = ({id})=>{
             setCourse(response.data.course);  
             setCreatedDate(response.data.createdDate)
             setCourseName(response.data.course.name);
+            setSelectedCourse(response.data.course)
             
         });
         await CourseService.getAllCourses().then((response)=>{
@@ -44,16 +45,18 @@ const EditVideo = ({id})=>{
     const handleSubmit = e =>{
         e.preventDefault();
         
-       
+        let new_url = CourseService.changeUrl(url.replace(/ /g,''));
         const newItem = {
             id,
-            url,
-            description,course:selectedCourse, createdDate
+            url:new_url,
+            description,
+            course:selectedCourse, createdDate
         }
         
         setLoading(true);
         CourseService.editVideo(newItem).then((response)=>{
             setLoading(false);
+            setCourseName("")
             alert("Видео успешно изменено")
             history.push("/adminpanel/videos");
         }).catch(error => {
@@ -65,6 +68,7 @@ const EditVideo = ({id})=>{
     }
     const handleCourseChange = (event)=> {
         setSelectedCourse(courses[event.target.value]);
+        // alert(courses[event.target.value].name)
       }
 
     return(

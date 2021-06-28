@@ -36,10 +36,16 @@ const HomePage= ()=>{
             (<>
             <div className="row mt-5">
                 <div className="col-6">
-                    <VideoTutorial></VideoTutorial>
+                    <VideoTutorial url={"https://www.youtube.com/embed/xr6n_onHBHs"} 
+                    description={"Начало работы на языке С++. Ссылка на платформу по кнопке снизу"}
+                    website_url={'https://www.onlinegdb.com/online_c++_compiler'}
+                    ></VideoTutorial>
                 </div>
                 <div className="col-6">
-                <VideoTutorial></VideoTutorial>
+                <VideoTutorial url={"https://www.youtube.com/embed/mlq7PXX_1kU"} 
+                    description={"Начало работы на языке python. Ссылка на платформу по кнопке снизу"}
+                    website_url={'https://jupyter.org'}
+                    ></VideoTutorial>
                 </div>
             </div>
             

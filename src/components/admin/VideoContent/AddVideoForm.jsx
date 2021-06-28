@@ -14,9 +14,9 @@ const AddVideoForm = ({location})=>{
     const onSubmit = (e) =>{
         e.preventDefault();
       
-       
+       let new_url = CourseService.changeUrl(url.replace(/ /g,''));
         const newItem = {
-            url,
+            url:new_url,
             description
         }
         
@@ -46,13 +46,14 @@ const AddVideoForm = ({location})=>{
             <form onSubmit={(e)=>onSubmit(e)}>
             <div className="form-group">
                 <label>Ссылка на видео:</label>
-                
+        
                 <input placeholder="URL ..."  type="text" className="form-control"
                     onChange={(e)=>{
                         setUrl(e.target.value)}} value={url}/>
+                        <span className="mb-2" style={{fontFamily:"sans-serif", fontSize:"small"}}>Ссылка должна выглядеть как-то так: https://www.youtube.com/watch?v=FzcfZyEhOoI или так https://youtu.be/FzcfZyEhOoI</span>
                     </div>
                
-                <div className="form-group">
+                <div className="form-group mt-2">
                      <label>Описание видео:</label>
                     <input placeholder="Этот видео о том и об этом ..."  type="text" className="form-control"
                            onChange={(e)=>{

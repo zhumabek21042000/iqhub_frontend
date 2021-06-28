@@ -68,9 +68,9 @@ const UsersPage = ({id}) =>{
         setEmail(event.target.value);
     }
 
-    const handlePasswordChange = event =>{
-        setPassword(event.target.value);
-    }
+    // const handlePasswordChange = event =>{
+    //     setPassword(event.target.value);
+    // }
 
     const handleNewPassChange = event =>{
         setNewPassword(event.target.value);
@@ -79,8 +79,8 @@ const UsersPage = ({id}) =>{
     const emailSubmit = event =>{
         setLoading(true);
         event.preventDefault();
-        alert(email);
-        CourseService.changeEmail(email)
+        // alert(email);
+        CourseService.changeEmail(user.email,email)
             .then(async res=>{
                 setLoading(false);
                 alert("Почта пользователя успешно изменено!")
@@ -124,7 +124,7 @@ const UsersPage = ({id}) =>{
             usersname:usersname
         };
 
-        CourseService.changePassword(userdata, newPassword)
+        CourseService.changepassword(userdata, newPassword)
             .then(async res=>{
                 setLoading(false);
                 setPassword("");
@@ -225,18 +225,21 @@ const UsersPage = ({id}) =>{
                 </form>
                
                 <form onSubmit={handlePassSubmit}>
-                <div className="form-group">
+                {/* <div className="form-group">
                         <label>Старый пароль</label>
                         <input value={password} placeholder="Пароль..." className="form-control" onChange={handlePasswordChange} type="password"/>
-                    </div>
+                    </div> */}
                     <div className="form-group">
                         <label>Новый пароль</label>
                         <input value={newPassword} placeholder="Новый пароль..." className="form-control" onChange={handleNewPassChange} type="password"/>
                     </div>
                     <div className="form-group">
                         <button  className="btn btn-danger my-2">Изменить пароль</button>
+                        
                     </div>
+                    
                 </form>
+                <button className="btn btn-warning ml-2" onClick={()=>history.goBack()}>Назад</button>
               
             </div>
             <div className="col-4">

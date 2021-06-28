@@ -3,6 +3,7 @@ import {Link, useHistory} from 'react-router-dom';
 import UploadService from "./UploadFilesService";
 import AssignmentData from './AssignmentData';
 import Pagination from '../Pagination';
+import CourseService from '../../../services/spring-service';
 
 const AssignmentTable = () => {
     const [files, setFiles] = useState([]);
@@ -39,7 +40,9 @@ const AssignmentTable = () => {
             <form className="mt-3">
                 <input class="form-control w-25" type="text" onChange={handleSearchChange} placeholder="Поиск..." aria-label="Search"/>
             </form>
-            {files.length>0 ?
+            {
+            !loading?
+            files.length>0 ?
             <>
             <AssignmentData assignmentlist={currentFiles.reverse()} loading={loading}></AssignmentData>
             <Pagination
@@ -50,6 +53,8 @@ const AssignmentTable = () => {
             </>
             :
             <h3 className="mt-3 text-center">Никаких документов нет :(</h3>
+                :
+                CourseService.loadingGif()
 }
         </div>
     )

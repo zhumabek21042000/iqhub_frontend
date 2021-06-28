@@ -2,12 +2,12 @@ import axios from 'axios';
 import moment from 'moment';
 
 const instance = axios.create({
-    baseURL: 'http://springbootiqhub-env.eba-sbutpkbr.us-east-2.elasticbeanstalk.com/api'
+    baseURL: 'https://iqhub-springboot.herokuapp.com/api'
     // baseURL:'http://localhost:5000/api'
   });
 
 const instSec = axios.create({
-    baseURL: 'http://springbootiqhub-env.eba-sbutpkbr.us-east-2.elasticbeanstalk.com'
+    baseURL: 'https://iqhub-springboot.herokuapp.com'
     // baseURL:'http://localhost:5000'
 });
 
@@ -89,7 +89,9 @@ class CourseService {
     getRolesNotInUser(id){
         return instSec.get("/getRestRoles/"+id+"/"+localStorage.getItem("token"));
     }
-
+    checkCourse(c_id){
+        return instance.get("/userCourseCheck/"+localStorage.getItem("token")+"/"+c_id);
+    }
     assignrole(user_id, role_name){
         const form = new FormData();
         form.append("user_id", user_id);
@@ -129,14 +131,22 @@ class CourseService {
         });
     }
 
-    changeEmail(new_email){
+    changeEmail(old_email,new_email){
         const form = new FormData();
+        form.append("old_email", old_email);
         form.append("new_email", new_email);
-        return instSec.post("/changeEmail/"+localStorage.getItem("token"), form)
+        return instSec.post("/changeEmail", form)
     }
 
     changePassword(user, pass){
         return instance.put("/changePass", {
+            email: user.email,
+            password: user.password,
+            newPassword: pass
+        });
+    }
+    changepassword(user, pass){
+        return instance.put("/changepassword", {
             email: user.email,
             password: user.password,
             newPassword: pass
@@ -154,6 +164,25 @@ class CourseService {
         </div>
         </div>
         return gif;
+    }
+    changeUrl(url){
+        if(url.substr(0, 17) === "https://youtu.be/"){
+            var short_url = url.substr(17, url.length);
+            let url2 = "https://www.youtube.com/embed/";
+            url2 = url2.concat(short_url);
+            return url2;
+        }
+        else if(url.substr(0, 32) === "https://www.youtube.com/watch?v="){
+            short_url = url.substr(32, url.length);
+            let url2 = "https://www.youtube.com/embed/";
+            if (short_url.indexOf('&') > -1)
+            {
+            short_url = short_url.substr(0, short_url.indexOf('&'));
+            }
+            url2 = url2.concat(short_url);
+            return url2;
+         }
+         else{return url}
     }
    
 

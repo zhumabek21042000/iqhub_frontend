@@ -39,7 +39,9 @@ const CourseTable = () => {
             <form className="mt-3">
                 <input class="form-control w-25" type="text" onChange={handleSearchChange} placeholder="Поиск..." aria-label="Search"/>
             </form>
-            {courses.length>0 ?
+            {
+                 !loading ?
+            courses.length>0 ?
             <>
             <CourseData courselist={currentCourses.reverse()} loading={loading}></CourseData>
             <Pagination
@@ -50,6 +52,8 @@ const CourseTable = () => {
             </>
             :
             <h3 className="mt-3 text-center">Никаких курсов нет :(</h3>
+                :
+                CourseService.loadingGif()
 }
         </div>
     )

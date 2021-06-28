@@ -3,6 +3,7 @@ import {Link, NavLink, useHistory} from 'react-router-dom';
 import React, {useContext,useState, useEffect} from 'react';
 import {useCookies} from 'react-cookie';
 import CourseService from '../../services/spring-service';
+import { set } from 'lodash';
 
 const NavBar=(props)=> {
     let history = useHistory();
@@ -17,9 +18,13 @@ const NavBar=(props)=> {
     }
   
     const [isAdmin, setIsAdmin] = useState(false);
+    const [user, setUser] = useState();
+    const [usersname, setUsersname] = useState('')
 
     useEffect(() => {
          CourseService.getCurrentUser().then((response)=>{
+           setUser(response.data);
+           setUsersname(response.data.usersname)
          const user = response.data;
             let userRoles = user.roles;
             for(let i = 0; i < userRoles.length;i++){
@@ -62,7 +67,7 @@ const NavBar=(props)=> {
     <>
      <ul className="navbar-nav float-right">
     <Link to="/profile" activeClassName="nav-link active" className="nav-link" style={{color:"white"}}>
-        Профиль
+        Профиль <i>{usersname}</i>
     </Link>
 
     <Link to="/login" activeClassName="nav-link active" className="nav-link" style={{color:"white"}} onClick={logout}>
