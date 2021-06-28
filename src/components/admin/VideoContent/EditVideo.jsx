@@ -67,8 +67,13 @@ const EditVideo = ({id})=>{
         
     }
     const handleCourseChange = (event)=> {
-        setSelectedCourse(courses[event.target.value]);
-        // alert(courses[event.target.value].name)
+        if(event.target.value === -1){
+            setSelectedCourse(course);
+        }
+        else{
+            setSelectedCourse(courses[event.target.value]);
+            
+        }
       }
 
     return(
@@ -97,7 +102,8 @@ const EditVideo = ({id})=>{
             </div>
             <div className="form-group">
                     <label>Можете выбрать другой курс:</label>
-                    <select className="form-control" id="fruit"  onChange={handleCourseChange}>
+                    <select className="form-control" id="fruit" onChange={handleCourseChange}>
+                    <option value={-1}>---</option>
             { courses.map((option, index) => <option key={index} value={index}>{option.name}</option>)}
           </select>
             </div>
