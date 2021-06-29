@@ -12,7 +12,7 @@ const CourseDetails = (props) =>{
     const [loading, setLoading] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
-    const [access, setAccess] = useState(props.access ? props.access : false);
+    const [access, setAccess] = useState(true);
     const [tasks, setTasks] = useState([]);
     const [videos, setVideos] = useState([]);
   // setAccess(true)
@@ -140,7 +140,7 @@ const CourseDetails = (props) =>{
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
 
-                  <iframe width="500" height="215" src={video.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe width={window.innerWidth/3} height={window.innerHeight/2} src={video.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                       <hr class="my-4"/>
                       <p>Описание: {video.description}</p>
                       <Link to={`/video/${video.id}`} class="btn btn-primary" role="button">Открыть видео в отдельной странице</Link>

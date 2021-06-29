@@ -25,7 +25,7 @@ const VideoPage=(props)=>{
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                             <Card.Body>
-                                <iframe width="920" height="405"
+                                <iframe width={window.innerWidth/2} height={window.innerHeight/2}
                                         src={video.url} frameBorder="0"
                                         allowFullScreen></iframe>
                                 <br/>
