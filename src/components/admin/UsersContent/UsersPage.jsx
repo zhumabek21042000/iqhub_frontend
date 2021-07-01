@@ -75,7 +75,25 @@ const UsersPage = ({id}) =>{
     const handleNewPassChange = event =>{
         setNewPassword(event.target.value);
     }
-
+    async function deleteUser(id){
+        setLoading(true);
+        const user = await CourseService.getUserById(id);
+        if( user.data.id === id){
+            alert("Нельзя удалить этого пользователя")
+            setLoading(false);
+        }
+        else{
+        await CourseService.deleteUser(id).then(response=>{
+            alert("Пользователь был удален.")
+            setLoading(false);
+            history.push("/adminpanel/users");
+        
+        }).catch(error=>{
+            alert("Произошла ошибка")
+            setLoading(false)
+        })
+    }
+    }
     const emailSubmit = event =>{
         setLoading(true);
         event.preventDefault();
@@ -86,7 +104,7 @@ const UsersPage = ({id}) =>{
                 alert("Почта пользователя успешно изменено!")
                 // window.location.reload();
             }).catch(error => {
-                alert("Упс. Что-то пошло не так :(")
+                alert("Что-то пошло не так :(")
                 setLoading(false);
             });
 
@@ -234,12 +252,17 @@ const UsersPage = ({id}) =>{
                         <input value={newPassword} placeholder="Новый пароль..." className="form-control" onChange={handleNewPassChange} type="password"/>
                     </div>
                     <div className="form-group">
-                        <button  className="btn btn-danger my-2">Изменить пароль</button>
+                        <button  className="btn btn-primary my-2">Изменить пароль</button>
                         
                     </div>
                     
                 </form>
+
                 <button className="btn btn-warning ml-2" onClick={()=>history.goBack()}>Назад</button>
+                <button className="btn btn-danger ml-2" style={{marginLeft:"5px"}} onClick={e=>
+        window.confirm("Вы уверены что хотите удалить этого пользователя?") &&
+        deleteUser(id)}>!Удалить пользователя!</button>
+                
               
             </div>
             <div className="col-4">

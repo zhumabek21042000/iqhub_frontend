@@ -95,6 +95,9 @@ class CourseService {
     checkCourse(c_id){
         return instance.get("/userCourseCheck/"+localStorage.getItem("token")+"/"+c_id);
     }
+    deleteUser(id){
+        return instSec.delete("/user/"+id);
+    }
     assignrole(user_id, role_name){
         const form = new FormData();
         form.append("user_id", user_id);
