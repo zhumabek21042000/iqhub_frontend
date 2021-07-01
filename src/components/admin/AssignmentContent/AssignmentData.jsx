@@ -9,7 +9,7 @@ const AssignmentData = ({assignmentlist, loading}) => {
     
     const [assignments, setAssignments] = useState([]);
     const [loading1, setLoading1] = useState(false);
-    const api = "http://springbootiqhub-env.eba-sbutpkbr.us-east-2.elasticbeanstalk.com/api/file/";
+    // const api = "http://springbootiqhub-env.eba-sbutpkbr.us-east-2.elasticbeanstalk.com/api/file/";
 
     let history = useHistory();
 

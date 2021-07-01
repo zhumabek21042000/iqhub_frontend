@@ -2,13 +2,13 @@ import axios from 'axios';
 import moment from 'moment';
 
 const instance = axios.create({
-    // baseURL: 'https://iqhub-springboot.herokuapp.com/api'
-    baseURL:'http://localhost:5000/api'
+    baseURL: 'https://iqhub-springboot.herokuapp.com/api'
+    // baseURL:'http://localhost:5000/api'
   });
 
 const instSec = axios.create({
-    // baseURL: 'https://iqhub-springboot.herokuapp.com'
-    baseURL:'http://localhost:5000'
+    baseURL: 'https://iqhub-springboot.herokuapp.com'
+    // baseURL:'http://localhost:5000'
 });
 
 class CourseService {
