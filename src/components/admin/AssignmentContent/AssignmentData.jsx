@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import UploadService from "./UploadFilesService";
 import CourseService from "../../../services/spring-service";
+import UploadFilesService from './UploadFilesService';
 
 
 const AssignmentData = ({assignmentlist, loading}) => {
@@ -26,6 +27,8 @@ const AssignmentData = ({assignmentlist, loading}) => {
             window.location.reload();
           })
       }
+    
+  
     if(loading){
         return CourseService.loadingGif();
     }
@@ -56,6 +59,9 @@ const AssignmentData = ({assignmentlist, loading}) => {
                                 <td>{assignment.name}</td>
                                 <td>{CourseService.getCourseName(assignment.course)}</td>
                                 <td>{assignment.type}</td>
+                                {/* <td>{assignment.url}</td> */}
+                                {/* <td><a href={"http://localhost:5000/api/file/"+assignment.id} download="dasasd.docx">Скачать</a></td> */}
+                                {/* <td><a onClick={()=>download(assignment.id, assignment.name, assignment.url)}>Скачать</a></td> */}
                                 <td><a href={assignment.url}>Скачать</a></td>
                                 <td><button className="btn btn-danger" onClick={e =>
         window.confirm("Вы уверены что хотите удалить этот файл?") &&

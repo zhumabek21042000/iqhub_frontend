@@ -5,6 +5,7 @@ import { useHistory, withRouter, Redirect } from 'react-router-dom';
 const VideoDetails = (props)=>{
     let history = useHistory();
     const [video, setVideo] = useState({});
+    
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);

@@ -2,11 +2,11 @@ import React, {useContext, useEffect, useState} from 'react';
 import CourseService from '../../services/spring-service';
 import CourseDetails from './CourseDetails';
 import CoursePage from '../pages/CoursePage';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 const CourseList = (props) =>{
     // const [user, setUser] = useState({});
     const [courses, setCourses] = useState([]);
-
+    let history = useHistory();
     useEffect(async()=>{
          await CourseService.getCurrentUser().then((response)=>{
             // setUser(response.data);
@@ -25,7 +25,7 @@ const CourseList = (props) =>{
             <div className="card-body">
               <h5 className="card-title">{course.name}</h5>
               <p className="card-text">{course.description}</p>
-              <Link to={"/course/"+course.id} class="card-link">Перейти</Link>
+              <a onClick={()=>history.push({pathname: "/course/"+course.id, state:{access: props.access}})} class="card-link">Перейти</a>
             </div>
           </div>
             )

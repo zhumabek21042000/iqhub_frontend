@@ -26,6 +26,8 @@ class UploadFilesService extends React.Component  {
     return http.get("/files/"+id);
   }
   getFile(id){
+    // const form = new FormData();
+    // form.append("file-name", file_name);
     return http.get("/file/"+id);
   }
   deleteFile(id){

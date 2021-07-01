@@ -31,10 +31,10 @@ const CourseData = ({courselist, loading}) => {
                     </thead>
                     <tbody>
                     {courses.length>0 ?
-                    courses.map((course) => {
+                    courses.map((course, index) => {
                         return (
                             <tr>
-                                <th scope="row">{course.id}</th>
+                                <th scope="row">{index+1}</th>
                                 <td>{course.name}</td>
                                 <td>{course.description}</td>
                                 <td>{CourseService.timeConverter(course.createdDate)}</td>

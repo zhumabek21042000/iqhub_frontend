@@ -49,7 +49,7 @@ const HomePage= ()=>{
                 </div>
             </div>
             
-            <CourseList email={user.email}></CourseList>
+            <CourseList access={true} email={user.email}></CourseList>
             </>)
         :history.push("/login")
     }

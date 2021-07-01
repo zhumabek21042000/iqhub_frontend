@@ -6,6 +6,7 @@ import UploadFilesService from '../admin/AssignmentContent/UploadFilesService';
 import CourseService from '../../services/spring-service';
 const CourseDetails = (props) =>{
     let history = useHistory();
+    
     // const [user, setUser] = useState({});
     const [course, setCourse] = useState({});
     const [date1, setDate1] = useState("NaN");
@@ -163,7 +164,7 @@ const CourseDetails = (props) =>{
           tasks.length >0  ?
           tasks.map((task, index)=>{
             return(
-            <li className="list-group-item"><a href={task.url}>{task.name}</a></li>)})
+            <li className="list-group-item"><a href={task.url} download={task.name}>{task.name}</a></li>)})
             :
             <h5>К сожалению, в данном курсе нет документов</h5>
 
