@@ -32,7 +32,7 @@ const NavBar=(props)=> {
                     setIsAdmin(true);
                 }
             }
-            if(localStorage.getItem("token")){
+            if(!localStorage.getItem("token")){
                 setIsAdmin(false);
             }
         }).catch((error)=>{
