@@ -78,7 +78,7 @@ const UsersPage = ({id}) =>{
     async function deleteUser(id){
         setLoading(true);
         const user = await CourseService.getUserById(id);
-        if( user.data.id === id){
+        if(user.data.id === id){
             alert("Нельзя удалить этого пользователя")
             setLoading(false);
         }

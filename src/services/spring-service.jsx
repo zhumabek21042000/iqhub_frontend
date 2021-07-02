@@ -123,6 +123,7 @@ class CourseService {
     getToken(){
         return JSON.parse(localStorage.getItem("token"));
     }
+
     enrollCourse(c_id, user_id){
         return instance.post('/enroll/'+c_id+'/'+user_id)
     }

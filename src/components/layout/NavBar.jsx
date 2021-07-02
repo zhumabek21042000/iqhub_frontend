@@ -32,14 +32,21 @@ const NavBar=(props)=> {
                     setIsAdmin(true);
                 }
             }
-            if(!localStorage.getItem("token")){
+            if(localStorage.getItem("token")){
                 setIsAdmin(false);
             }
         }).catch((error)=>{
-          if(localStorage.getItem("token"))
-          localStorage.removeItem("token");
-          // window.location.reload();
+          if(localStorage.getItem("token")){
+              localStorage.removeItem("token");
+          
+        }
         })
+        window.onload = function(){
+          if(!window.location.hash){
+            window.location = window.location+'#smile';
+            window.location.reload();
+          }
+        }
     }, [])
     function logout() {
       CourseService.logout();
