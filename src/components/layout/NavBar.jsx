@@ -23,24 +23,27 @@ const NavBar=(props)=> {
 
     useEffect(() => {
          CourseService.getCurrentUser().then((response)=>{
-           setUser(response.data);
-           setUsersname(response.data.usersname)
-         const user = response.data;
-            let userRoles = user.roles;
-            for(let i = 0; i < userRoles.length;i++){
-                if(userRoles[i]['role'] === "ROLE_ADMIN"){
-                    setIsAdmin(true);
+          if (CourseService.checkJWT() === true){
+                setUser(response.data);
+                setUsersname(response.data.usersname)
+                const user = response.data;
+                let userRoles = user.roles;
+                for(let i = 0; i < userRoles.length;i++){
+                    if(userRoles[i]['role'] === "ROLE_ADMIN"){
+                        setIsAdmin(true);
+                    }
                 }
-            }
-            if(!localStorage.getItem("token")){
-                setIsAdmin(false);
-            }
-        }).catch((error)=>{
-          if(localStorage.getItem("token")){
-              localStorage.removeItem("token");
-          
+                if(!localStorage.getItem("token")){
+                    setIsAdmin(false);
+                }
         }
+    }).catch((error)=>{
+          alert("Error")
         })
+        
+        if(!localStorage.getItem("token")){
+          history.push("/login");
+      }
         window.onload = function(){
           if(!window.location.hash){
             window.location = window.location+'#smile';

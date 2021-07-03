@@ -68,6 +68,19 @@ class CourseService {
              return response.data;
          });
     }
+    checkJWT(user) {
+        return instSec.post('/auth', user).then(response => {
+            if(response.data.jwtToken){
+                if(response.data.jwtToken !== localStorage.getItem("token")){
+                    localStorage.removeItem("token");
+                    return false;
+                    }
+                // localStorage.setItem("token", response.data.jwtToken);
+               //  alert(localStorage.getItem("token"))
+            }
+            return true;
+        });
+   }
 
     getCurrentUser(){
         return instSec.get( "/getUser/" + localStorage.getItem("token"));
