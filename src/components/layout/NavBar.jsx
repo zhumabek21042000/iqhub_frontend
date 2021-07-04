@@ -23,7 +23,7 @@ const NavBar=(props)=> {
 
     useEffect(() => {
          CourseService.getCurrentUser().then((response)=>{
-          if (CourseService.checkJWT() === true){
+         
                 setUser(response.data);
                 setUsersname(response.data.usersname)
                 const user = response.data;
@@ -32,7 +32,7 @@ const NavBar=(props)=> {
                     if(userRoles[i]['role'] === "ROLE_ADMIN"){
                         setIsAdmin(true);
                     }
-                }
+                
                 if(!localStorage.getItem("token")){
                     setIsAdmin(false);
                 }
