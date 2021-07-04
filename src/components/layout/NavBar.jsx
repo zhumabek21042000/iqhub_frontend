@@ -38,12 +38,12 @@ const NavBar=(props)=> {
                 }
         }
     }).catch((error)=>{
-          alert("Error")
-        })
-        
-        if(!localStorage.getItem("token")){
+          if(!localStorage.getItem("token")){
           history.push("/login");
       }
+        })
+        
+       
         window.onload = function(){
           if(!window.location.hash){
             window.location = window.location+'#smile';
