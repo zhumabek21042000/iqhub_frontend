@@ -32,7 +32,7 @@ const NavBar=(props)=> {
                     if(userRoles[i]['role'] === "ROLE_ADMIN"){
                         setIsAdmin(true);
                     }
-                }
+                  }
                 if(!localStorage.getItem("token")){
                     setIsAdmin(false);
                 }
