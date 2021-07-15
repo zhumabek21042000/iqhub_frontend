@@ -23,7 +23,7 @@ const NavBar=(props)=> {
 
     useEffect(() => {
          CourseService.getCurrentUser().then((response)=>{
-          if (CourseService.checkJWT() === true){
+        //   if (CourseService.checkJWT() === true){
                 setUser(response.data);
                 setUsersname(response.data.usersname)
                 const user = response.data;
@@ -36,20 +36,30 @@ const NavBar=(props)=> {
                 if(!localStorage.getItem("token")){
                     setIsAdmin(false);
                 }
-        }
-    }).catch((error)=>{
-          alert("Error")
+        // }
+    }).catch(function(error){
+          if(error.response){
+              if(error.response.status === 500){
+                history.push("/login");
+                alert("Пройдите авторизацию еще раз")
+              }
+              else{
+                history.push("/login");
+                alert("Произошла ошибка")
+              }
+          }
+          
         })
         
         if(!localStorage.getItem("token")){
           history.push("/login");
       }
-        window.onload = function(){
-          if(!window.location.hash){
-            window.location = window.location+'#smile';
-            window.location.reload();
-          }
-        }
+        // window.onload = function(){
+        //   if(!window.location.hash){
+        //     window.location = window.location+'#smile';
+        //     window.location.reload();
+        //   }
+        // }
     }, [])
     function logout() {
       CourseService.logout();
