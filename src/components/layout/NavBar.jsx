@@ -41,13 +41,13 @@ const NavBar=(props)=> {
           if(error.response){
               if(error.response.status === 500){
                 logout();
-                history.push("/login");
-                alert("Пройдите авторизацию еще раз")
+                // history.push("/login");
+                // alert("Пройдите авторизацию еще раз")
               }
               else{
                 logout();
-                history.push("/login");
-                alert("Произошла ошибка")
+                // history.push("/login");
+                // alert("Произошла ошибка")
               }
           }
           
