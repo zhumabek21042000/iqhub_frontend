@@ -40,14 +40,17 @@ const NavBar=(props)=> {
     }).catch(function(error){
           if(error.response){
               if(error.response.status === 500){
-                logout();
+                window.onload = function(){
+                  if(!window.location.hash){
+                    history.push("/login");
+                    alert("Пройдите авторизацию еще раз")
+                    window.location = window.location+'#smile';
+                    window.location.reload();
+                  }
+                }
+                // logout();
                 // history.push("/login");
                 // alert("Пройдите авторизацию еще раз")
-              }
-              else{
-                logout();
-                // history.push("/login");
-                // alert("Произошла ошибка")
               }
           }
           
