@@ -3,12 +3,15 @@ import {Link, useHistory} from 'react-router-dom';
 import CourseService from "../../../services/spring-service";
 import UsersData from './UsersData';
 import Pagination from '../Pagination';
+import { filter } from 'lodash';
 
 
 const UsersTable = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [filterField, setFilterField] = useState('id');
+    const [counterEmail, setCounterEmail] = useState(0);
     const [usersPerPage] = useState(5);
     const [search, setSearch] = useState('');
     let history = useHistory();
@@ -25,9 +28,19 @@ const UsersTable = () => {
         setSearch(event.target.value)
         event.preventDefault();
     }
+    Array.prototype.sortBy = function(p) {
+        return this.slice(0).sort(function(a,b) {
+          return (a[p] > b[p]) ? 1 : (a[p] < b[p]) ? -1 : 0;
+        });
+      }
+
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = users.filter(user=> user.email.toLowerCase().includes(search.toLowerCase()) || user.usersname.toLowerCase().includes(search.toLowerCase())).slice(indexOfFirstUser, indexOfLastUser);
+    const currentUsers = users.filter(user=> user.email.toLowerCase().includes(search.toLowerCase()) || user.usersname.toLowerCase().includes(search.toLowerCase())).
+    // sort((a,b)=> (a[filterField] > b[filterField]) ? 1 :((a[filterField] > b[filterField]) ? -1 : 0)).
+    sortBy(filterField).
+    slice(indexOfFirstUser, indexOfLastUser);
+    // alert(filterField)
   
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -46,7 +59,17 @@ const UsersTable = () => {
             !loading ? 
             users.length >0?
             <>
-            <UsersData userlist={currentUsers.reverse()}></UsersData>
+             <table className="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col"><button type="button" onClick={()=> {setFilterField('email'); setCounterEmail(counterEmail+1)}}>Email</button></th>
+                        <th scope="col">Пароль</th>
+                        <th scope="col"><button type="button" onClick={()=> setFilterField('usersname')}>Имя пользователя</button></th>
+                    </tr>
+                    </thead>
+            <UsersData userlist={counterEmail % 2 ===0 ? currentUsers.reverse() : currentUsers}></UsersData>
+            </table>
             <Pagination
                 itemsPerPage={usersPerPage}
                 totalItems={users.length}

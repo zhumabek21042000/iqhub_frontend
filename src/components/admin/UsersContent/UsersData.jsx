@@ -11,18 +11,16 @@ const UsersData = ({userlist}) => {
     },[userlist]);
 
     return(
-        
-            
-            <div>
-                <table className="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Почта</th>
-                        <th scope="col">Пароль</th>
-                        <th scope="col">Имя пользователя</th>
-                    </tr>
-                    </thead>
+   
+                // <table className="table">
+                //     <thead>
+                //     <tr>
+                //         <th scope="col">ID</th>
+                //         <th scope="col">Почта</th>
+                //         <th scope="col">Пароль</th>
+                //         <th scope="col">Имя пользователя</th>
+                //     </tr>
+                //     </thead>
                     <tbody>
                     {users.length>0 ? 
                     users.map((user) => {
@@ -43,8 +41,8 @@ const UsersData = ({userlist}) => {
                     </tbody>
                 
                 
-                </table>
-            </div>
+                // </table>
+           
        
     )
 }
