@@ -117,7 +117,7 @@ const CourseDetails = (props) =>{
     <button className="btn btn-secondary ml-5" style={{width:"100px", height:"40px", marginLeft:"5px"}} onClick={()=>history.goBack()}>Назад</button>
       {isAdmin && <>
       <button className="btn btn-danger ml-5" onClick={e =>
-        window.confirm("Вы уверены что хотите удалить это видео?") &&
+        window.confirm("Вы уверены что хотите удалить этот курс?") &&
         deleteCourse()
     } style={{width:"100px", height:"40px", marginLeft:"5px"}}>Удалить</button>
       <button className="btn btn-success ml-5" style={{width:"100px", height:"40px", marginLeft:"5px"}} onClick={()=>history.push("/adminactions/editcourse/"+course.id)}>Изменить</button>
