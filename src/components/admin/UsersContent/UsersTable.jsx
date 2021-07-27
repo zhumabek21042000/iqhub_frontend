@@ -12,6 +12,7 @@ const UsersTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [filterField, setFilterField] = useState('id');
     const [counterEmail, setCounterEmail] = useState(0);
+    const [counterUsersname, setCounterUsersname] = useState(0);
     const [usersPerPage] = useState(5);
     const [search, setSearch] = useState('');
     let history = useHistory();
@@ -63,9 +64,9 @@ const UsersTable = () => {
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col"><button type="button" onClick={()=> {setFilterField('email'); setCounterEmail(counterEmail+1)}}>Email</button></th>
+                        <th scope="col"><button style={{border: "none",color: "black", background: "none!important", padding: "0!important"}} onClick={()=> {setFilterField('email'); setCounterEmail(counterEmail+1)}}>Email</button></th>
                         <th scope="col">Пароль</th>
-                        <th scope="col"><button type="button" onClick={()=> setFilterField('usersname')}>Имя пользователя</button></th>
+                        <th scope="col">Имя пользователя</th>
                     </tr>
                     </thead>
             <UsersData userlist={counterEmail % 2 ===0 ? currentUsers.reverse() : currentUsers}></UsersData>
