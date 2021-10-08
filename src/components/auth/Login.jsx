@@ -37,11 +37,12 @@ const Login = ({authUsr}) => {
         CourseService.login(inputData)
             .then(async res=>{
                 setLoading(false);
-                
-                alert("Вы успешно вошли в систему!")
                 await history.push("/");
-                console.log("Posle PUSH");
                 window.location.reload();
+                alert("Вы успешно вошли в систему!")
+                
+                console.log("Posle PUSH");
+                
 
             
             }).catch(error => {
