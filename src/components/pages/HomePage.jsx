@@ -44,7 +44,7 @@ const HomePage= ()=>{
                 <div className="col-6 text-center">
                 <VideoTutorial url={"https://www.youtube.com/embed/mlq7PXX_1kU"} 
                     description={"Начало работы на языке python. Ссылка на платформу по кнопке снизу"}
-                    website_url={'https://jupyter.org'}
+                    website_url={'https://www.onlinegdb.com/online_python_compiler'}
                     ></VideoTutorial>
                 </div>
             </div>
