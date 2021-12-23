@@ -17,11 +17,14 @@ const CourseList = (props) =>{
     }, []);
     return(<div className="row">
        <h2 className="mt-2">Курсы {props.email}</h2>
-        <div className="col-3">
-        {
+{
           courses.length>0 ?
-        courses.map(course=>{
-            return (<div className="card" style={{width: "18rem;"}}>
+        courses.map(course=>{        
+
+        
+            return (
+                <div className="col-3">
+                <div className="card" style={{width: "18rem;"}}>
             <div className="card-body">
               <h5 className="card-title">{course.name}</h5>
               <p className="card-text">{course.description}</p>
